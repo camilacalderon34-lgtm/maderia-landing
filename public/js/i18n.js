@@ -3,10 +3,28 @@
 export const T = {
   es: {
     'meta.title': 'Maderia — Videos largos para tus canales de YouTube, en piloto automático',
+    'nav.precios': 'Precios', 'nav.preguntas': 'Preguntas', 'nav.entrar': 'Entrar',
+    'hero.p1': 'Para quien corre varios canales', 'hero.p2': 'el minuto de video',
+    'hero.sobre': 'Videos largos de YouTube sin mostrar la cara',
+    'hero.t1': 'Escribe el título.', 'hero.t2': 'Maderia hace el video.',
+    'hero.p': 'Eliges el canal, escribes el título y Maderia escribe el guion, pone la voz, busca un clip para cada frase, lo revisa y lo renderiza. <strong>Un video de 15 a 20 minutos listo para subir.</strong> Cada canal con su propia voz, su estilo y sus reglas.',
+    'hero.cta': 'Haz tu primer video gratis',
+    'hero.n1': 'Sin tarjeta', 'hero.n2': 'primer video gratis hasta', 'hero.n3': 'min', 'hero.n4': 'videos de 15 a 20 min',
+    'tl.titulo': 'Línea de tiempo', 'tl.video': 'Video', 'tl.voz': 'Voz', 'tl.subs': 'Subtítulos', 'tl.musica': 'Música', 'tl.pie': 'escenas · un clip por frase',
+    'vid.escenas': 'escenas', 'vid.ver': 'Ver en YouTube',
     'meta.desc': 'Elige el canal, escribe el título. Maderia hace el guion, la voz, los clips, la revisión y el render. Tu primer video, gratis.',
   },
   en: {
     'meta.title': 'Maderia — Long-form videos for your YouTube channels, on autopilot',
+    'nav.precios': 'Pricing', 'nav.preguntas': 'FAQ', 'nav.entrar': 'Log in',
+    'hero.p1': 'For people who run several channels', 'hero.p2': 'per minute of video',
+    'hero.sobre': 'Long-form faceless YouTube videos',
+    'hero.t1': 'Type the title.', 'hero.t2': 'Maderia makes the video.',
+    'hero.p': 'Pick the channel, type the title, and Maderia writes the script, records the voice, finds a clip for every sentence, reviews it and renders it. <strong>A 15 to 20 minute video, ready to upload.</strong> Each channel with its own voice, style and rules.',
+    'hero.cta': 'Make your first video free',
+    'hero.n1': 'No card', 'hero.n2': 'first video free up to', 'hero.n3': 'min', 'hero.n4': '15 to 20 minute videos',
+    'tl.titulo': 'Timeline', 'tl.video': 'Video', 'tl.voz': 'Voice', 'tl.subs': 'Captions', 'tl.musica': 'Music', 'tl.pie': 'scenes · one clip per sentence',
+    'vid.escenas': 'scenes', 'vid.ver': 'Watch on YouTube',
     'meta.desc': 'Pick the channel, type the title. Maderia writes, narrates, finds the clips, reviews and renders. Your first video is free.',
   },
 };
@@ -15,7 +33,7 @@ const CLAVE_LS = 'maderia.lang';
 
 export function idiomaInicial() {
   try { const g = localStorage.getItem(CLAVE_LS); if (g === 'es' || g === 'en') return g; } catch {}
-  return (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
+  return 'es'; // español primero; el visitante cambia a EN con el toggle y se recuerda
 }
 
 export function aplicarIdioma(lang) {

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-57.1 -291.1 1065.1 1065.1" role="img" aria-label="Maderia">
   <defs><linearGradient id="umg" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#818CF8"/></linearGradient></defs>
+    <stop offset="0" stop-color="#B8862F"/><stop offset="1" stop-color="#E2B45E"/></linearGradient></defs>
   <polygon points="321,0 581,0 260,483 0,483" fill="url(#umg)"/>
   <polygon points="691,0 951,0 630,483 370,483" fill="url(#umg)"/>
 </svg>
