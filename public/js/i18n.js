@@ -15,6 +15,11 @@ export const T = {
     'demo.sobre': '¿Cómo funciona?', 'demo.t': 'Menos producir, más publicar.',
     'demo.sub': 'Del título al video terminado, tal como se ve por dentro.',
     'demo.ver': 'Ver la demo', 'demo.play': 'Reproducir el video',
+    'res.sobre': 'Resultados', 'res.t': 'Videos hechos con Maderia, publicados en YouTube.',
+    'res.sub': 'Canales reales de distintos nichos. Dale play a cualquiera.',
+    'res.vistas': 'vistas', 'res.ver': 'Ver', 'res.hecho': 'Hecho con', 'res.visor': 'Reproductor de video',
+    'res.cerrar': 'Cerrar', 'res.ant': 'Anterior', 'res.sig': 'Siguiente',
+    'res.nota': 'Duración y vistas según YouTube al 17 de noviembre de 2026.',
     'meta.desc': 'Elige el canal, escribe el título. Maderia hace el guion, la voz, los clips, la revisión y el render. Tu primer video, gratis.',
   },
   en: {
@@ -31,6 +36,11 @@ export const T = {
     'demo.sobre': 'How does it work?', 'demo.t': 'Less producing, more publishing.',
     'demo.sub': 'From the title to the finished video, exactly as it looks inside.',
     'demo.ver': 'Watch the demo', 'demo.play': 'Play the video',
+    'res.sobre': 'Results', 'res.t': 'Videos made with Maderia, published on YouTube.',
+    'res.sub': 'Real channels across different niches. Press play on any of them.',
+    'res.vistas': 'views', 'res.ver': 'Watch', 'res.hecho': 'Made with', 'res.visor': 'Video player',
+    'res.cerrar': 'Close', 'res.ant': 'Previous', 'res.sig': 'Next',
+    'res.nota': 'Duration and views per YouTube as of November 17, 2026.',
     'meta.desc': 'Pick the channel, type the title. Maderia writes, narrates, finds the clips, reviews and renders. Your first video is free.',
   },
 };

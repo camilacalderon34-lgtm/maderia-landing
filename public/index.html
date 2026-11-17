@@ -115,17 +115,50 @@
   </section>
   <!-- ===== /2. DEMO ===== -->
 
-  <!-- ===== 3. PRUEBA REAL ===== -->
-  <!-- ===== /3. PRUEBA REAL ===== -->
+  <!-- ===== 3. RESULTADOS: videos reales en YouTube (datos en js/videos.js) ===== -->
+  <section class="resultados seccion" id="videos">
+    <div class="contenedor">
+      <div class="seccion-cab">
+        <p class="sobre" data-i18n="res.sobre">Resultados</p>
+        <h2 data-i18n="res.t">Videos hechos con Maderia, publicados en YouTube.</h2>
+        <p class="seccion-sub" data-i18n="res.sub">Canales reales de distintos nichos. Dale play a cualquiera.</p>
+      </div>
+      <div class="rejilla-videos" data-resultados></div>
+      <p class="nota-datos" data-i18n="res.nota">Duración y vistas según YouTube al 17 de noviembre de 2026.</p>
+    </div>
+  </section>
 
-  <!-- ===== 4. PERFILES POR CANAL ===== -->
-  <!-- ===== /4. PERFILES POR CANAL ===== -->
+  <!-- Visor de video propio: se abre sobre la página sin salir de ella. -->
+  <dialog class="visor" data-visor aria-label="Reproductor de video" data-i18n-attr="aria-label:res.visor">
+    <div class="visor-marco">
+      <div class="visor-cab">
+        <span class="visor-sello"><img src="/assets/marca/logo-mark.svg" alt="" width="22" height="11"><span><small data-i18n="res.hecho">Hecho con</small><b>Maderia</b></span></span>
+        <button type="button" class="visor-cerrar" data-visor-cerrar aria-label="Cerrar" data-i18n-attr="aria-label:res.cerrar">
+          <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="visor-pantalla">
+        <iframe data-visor-iframe title="" src="about:blank" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <button type="button" class="visor-flecha visor-ant" data-visor-ant aria-label="Anterior" data-i18n-attr="aria-label:res.ant"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M12 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="visor-flecha visor-sig" data-visor-sig aria-label="Siguiente" data-i18n-attr="aria-label:res.sig"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><path d="M8 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="visor-pie">
+        <p class="visor-titulo" data-visor-titulo></p>
+        <p class="visor-contador"><span data-visor-n>1</span> / <span data-visor-total>5</span></p>
+      </div>
+      <div class="visor-tira" data-visor-tira role="tablist" aria-label="Más videos"></div>
+    </div>
+  </dialog>
+  <!-- ===== /3. RESULTADOS ===== -->
 
-  <!-- ===== 5. VIDEOS REALES (datos en js/videos.js) ===== -->
-  <!-- ===== /5. VIDEOS REALES ===== -->
+  <!-- ===== 4. QUIÉNES SOMOS Y PRUEBA REAL ===== -->
+  <!-- ===== /4. QUIÉNES SOMOS Y PRUEBA REAL ===== -->
 
-  <!-- ===== 6. CÓMO FUNCIONA ===== -->
-  <!-- ===== /6. CÓMO FUNCIONA ===== -->
+  <!-- ===== 5. PERFILES POR CANAL ===== -->
+  <!-- ===== /5. PERFILES POR CANAL ===== -->
+
+  <!-- ===== 6. CÓMO FUNCIONA: 5 PASOS ===== -->
+  <!-- ===== /6. CÓMO FUNCIONA: 5 PASOS ===== -->
 
   <!-- ===== 7. EDITOR DE ESCENAS ===== -->
   <!-- ===== /7. EDITOR DE ESCENAS ===== -->

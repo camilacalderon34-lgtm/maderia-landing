@@ -100,7 +100,8 @@ button { font: inherit; color: inherit; }
   background:
     radial-gradient(50% 42% at 50% 0%, rgba(99,102,241,.16), transparent 70%),
     radial-gradient(40% 36% at 50% 55%, rgba(212,162,76,.07), transparent 70%); }
-.hero-dentro { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero-dentro { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; pointer-events: none; }
+.hero-dentro > * { pointer-events: auto; }
 .hero-texto { max-width: 720px; display: flex; flex-direction: column; align-items: center; }
 
 .pastillas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 22px; }
@@ -171,10 +172,10 @@ button { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) { .tl-bloques i { transition: none; } }
 /* ===== 2. Demo: ventana de la app con el video ===== */
 .demo { padding-top: clamp(24px, 4vw, 48px); }
-.demo-cab { text-align: center; max-width: 720px; margin: 0 auto clamp(28px, 4vw, 44px); }
-.demo-cab .sobre { color: var(--acento); margin-bottom: 14px; font-size: clamp(20px, 1.9vw, 26px); font-weight: 800; letter-spacing: -0.02em; text-transform: none; }
-.demo-cab h2 { font-size: clamp(30px, 4.6vw, 52px); color: var(--hueso); }
-.demo-sub { margin-top: 14px; font-size: clamp(16px, 1.4vw, 18px); color: var(--hueso-bajo); }
+.demo-cab, .seccion-cab { text-align: center; max-width: 760px; margin: 0 auto clamp(28px, 4vw, 44px); }
+.demo-cab .sobre, .seccion-cab .sobre { color: var(--acento); margin-bottom: 14px; font-size: clamp(20px, 1.9vw, 26px); font-weight: 800; letter-spacing: -0.02em; text-transform: none; }
+.demo-cab h2, .seccion-cab h2 { font-size: clamp(30px, 4.6vw, 52px); color: var(--hueso); }
+.demo-sub, .seccion-sub { margin-top: 14px; font-size: clamp(16px, 1.4vw, 18px); color: var(--hueso-bajo); }
 
 .ventana { background: #141414; border: 1px solid #2E2E2E; border-radius: clamp(18px, 2.4vw, 28px); overflow: hidden;
   box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 0 40px 90px rgba(0,0,0,.55); }
@@ -201,10 +202,60 @@ button { font: inherit; color: inherit; }
   .demo-play-ficha { width: 60px; height: 60px; border-radius: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .demo-play-ficha, .demo-play { transition: none; } }
-/* ===== 3. Prueba real ===== */
-/* ===== 4. Perfiles por canal ===== */
-/* ===== 5. Videos reales ===== */
-/* ===== 6. Cómo funciona ===== */
+/* ===== 3. Resultados: rejilla de videos + visor ===== */
+.rejilla-videos { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.tarjeta-video { display: block; width: 100%; text-align: left; background: var(--nogal-alto); border: 1px solid var(--borde); border-radius: 16px; overflow: hidden; padding: 0; cursor: pointer; color: inherit; transition: transform .2s, border-color .2s, box-shadow .2s; }
+.tarjeta-video:hover, .tarjeta-video:focus-visible { transform: translateY(-3px); border-color: #3A3A3A; box-shadow: 0 24px 50px rgba(0,0,0,.45); }
+.tarjeta-media { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+.tarjeta-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.tarjeta-video:hover .tarjeta-media img { transform: scale(1.03); }
+.tarjeta-play { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35)); opacity: 0; transition: opacity .2s; }
+.tarjeta-video:hover .tarjeta-play, .tarjeta-video:focus-visible .tarjeta-play { opacity: 1; }
+.tarjeta-play span { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #4F46E5, #818CF8); box-shadow: 0 12px 30px rgba(79,70,229,.45); }
+.tarjeta-play svg { margin-left: 2px; }
+.tarjeta-dur { position: absolute; right: 10px; bottom: 10px; background: rgba(0,0,0,.75); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 7px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.tarjeta-cuerpo { padding: 14px 16px 16px; }
+.tarjeta-cuerpo h3 { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tarjeta-meta { margin-top: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; color: var(--hueso-bajo); }
+.tarjeta-meta .canal { color: var(--hueso); font-weight: 600; }
+.tarjeta-meta .chip { border: 1px solid var(--borde); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
+.nota-datos { margin-top: 18px; text-align: center; font-size: 13px; color: var(--hueso-bajo); }
+@media (prefers-reduced-motion: reduce) { .tarjeta-video, .tarjeta-media img, .tarjeta-play { transition: none; } .tarjeta-video:hover { transform: none; } .tarjeta-video:hover .tarjeta-media img { transform: none; } }
+
+/* Visor */
+.visor { border: 0; padding: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; color: var(--hueso); }
+.visor::backdrop { background: rgba(8,8,8,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.visor[open] { display: grid; place-items: center; }
+.visor-marco { width: min(100% - 2 * var(--gutter), 1080px); max-height: 100%; overflow-y: auto; }
+.visor-cab { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.visor-sello { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 8px 12px; line-height: 1.1; }
+.visor-sello small { display: block; font-size: 11px; color: var(--hueso-bajo); }
+.visor-sello b { font-size: 14px; font-weight: 800; letter-spacing: -0.02em; }
+.visor-cerrar, .visor-flecha { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.14); background: rgba(20,20,20,.8); color: var(--hueso); cursor: pointer; }
+.visor-cerrar:hover, .visor-flecha:hover { background: rgba(40,40,40,.95); }
+.visor-pantalla { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 40px 100px rgba(0,0,0,.6); }
+.visor-pantalla iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.visor-flecha { position: absolute; top: 50%; transform: translateY(-50%); }
+.visor-ant { left: 12px; } .visor-sig { right: 12px; }
+.visor-flecha[disabled] { opacity: .3; cursor: default; }
+.visor-pie { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 14px; }
+.visor-titulo { font-size: 15px; color: var(--hueso-bajo); font-weight: 500; }
+.visor-contador { font-size: 13px; color: var(--hueso-bajo); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.visor-tira { display: flex; gap: 10px; margin-top: 16px; overflow-x: auto; padding: 6px 2px 10px; scrollbar-width: none; }
+.visor-tira::-webkit-scrollbar { display: none; }
+.visor-mini { flex: 0 0 96px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 2px solid transparent; padding: 0; background: #000; cursor: pointer; opacity: .55; transition: opacity .15s, transform .15s; }
+.visor-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.visor-mini:hover { opacity: .85; }
+.visor-mini[aria-selected="true"] { opacity: 1; border-color: #fff; transform: scale(1.06); }
+@media (max-width: 600px) {
+  .visor-flecha { display: none; } /* en móvil se navega con la tira de miniaturas; las flechas tapaban los controles */
+  .visor-pie { flex-direction: column; gap: 4px; }
+  .visor-mini { flex-basis: 80px; }
+}
+
+/* ===== 4. Quiénes somos y prueba real ===== */
+/* ===== 5. Perfiles por canal ===== */
+/* ===== 6. Cómo funciona: 5 pasos ===== */
 /* ===== 7. Editor de escenas ===== */
 /* ===== 8. Fuentes y licencias ===== */
 /* ===== 9. La diferencia ===== */

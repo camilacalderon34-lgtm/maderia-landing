@@ -1,7 +1,7 @@
 /* Maderia landing — punto de entrada. */
 import { CONFIG, usd } from './config.js';
 import { idiomaInicial, aplicarIdioma, montarToggle, T } from './i18n.js';
-import { VIDEOS, CATEGORIAS } from './videos.js';
+import { VIDEOS, RESULTADOS, CATEGORIAS } from './videos.js';
 
 let lang = idiomaInicial();
 montarToggle();
@@ -22,16 +22,17 @@ pintarPrecios();
 
 /* ===== 1. Hero: videos reales a los lados + línea de tiempo animada ===== */
 function miniHTML(v, d) {
-  const real = v.youtube.startsWith('http');
-  return `<a class="mini" href="${real ? v.youtube : '#videos'}" ${real ? 'target="_blank" rel="noopener"' : ''} aria-label="${v.titulo} · ${d['vid.ver']}" title="${v.titulo}">
+  const idx = RESULTADOS.indexOf(v);
+  return `<a class="mini" href="#videos" ${idx >= 0 ? `data-abrir-video="${idx}"` : ''} aria-label="${v.titulo} · ${d['res.ver']}" title="${v.titulo}">
     <img src="${v.thumb}" alt="" loading="lazy" decoding="async">
-    <video src="${v.preview}" muted playsinline loop preload="none" aria-hidden="true"></video>
+    ${v.preview ? `<video src="${v.preview}" muted playsinline loop preload="none" aria-hidden="true"></video>` : ''}
     <span class="mini-dur">${v.duracion}</span>
   </a>`;
 }
 function activarPreviews(root) {
   root.querySelectorAll('.mini').forEach(card => {
     const vid = card.querySelector('video');
+    if (!vid) return;
     const on = () => { card.classList.add('reproduciendo'); vid.play().catch(() => {}); };
     const off = () => { card.classList.remove('reproduciendo'); vid.pause(); };
     card.addEventListener('mouseenter', on); card.addEventListener('mouseleave', off);
@@ -130,3 +131,90 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirBoton
   });
   video.addEventListener('ended', () => { ventana.classList.remove('reproduciendo'); video.controls = false; });
 })();
+
+/* ===== 3. Resultados: rejilla + visor propio ===== */
+const vistasFmt = n => new Intl.NumberFormat(lang === 'es' ? 'es-ES' : 'en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+
+function pintarResultados() {
+  const cont = document.querySelector('[data-resultados]'); if (!cont) return;
+  const d = T[lang] || T.es;
+  cont.innerHTML = RESULTADOS.map((v, k) => `
+    <button type="button" class="tarjeta-video" data-abrir-video="${k}" aria-label="${d['res.ver']}: ${v.titulo}">
+      <div class="tarjeta-media">
+        <img src="${v.thumb}" alt="" loading="lazy" decoding="async">
+        <span class="tarjeta-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></span>
+        <span class="tarjeta-dur">${v.duracion}</span>
+      </div>
+      <div class="tarjeta-cuerpo">
+        <h3>${v.titulo}</h3>
+        <div class="tarjeta-meta">
+          <span class="canal">${v.canal}</span>
+          <span>${vistasFmt(v.vistas)} ${d['res.vistas']}</span>
+          <span class="chip">${(CATEGORIAS[v.categoria] || {})[lang] || v.categoria}</span>
+          <span class="chip">${v.idioma}</span>
+        </div>
+      </div>
+    </button>`).join('');
+}
+
+const visor = (() => {
+  const dlg = document.querySelector('[data-visor]'); if (!dlg) return null;
+  const iframe = dlg.querySelector('[data-visor-iframe]');
+  const titulo = dlg.querySelector('[data-visor-titulo]');
+  const nEl = dlg.querySelector('[data-visor-n]');
+  const totalEl = dlg.querySelector('[data-visor-total]');
+  const tira = dlg.querySelector('[data-visor-tira]');
+  const ant = dlg.querySelector('[data-visor-ant]');
+  const sig = dlg.querySelector('[data-visor-sig]');
+  let actual = 0;
+
+  const srcDe = v => `https://www.youtube-nocookie.com/embed/${v.youtube}?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white`;
+
+  function mostrar(k) {
+    actual = (k + RESULTADOS.length) % RESULTADOS.length;
+    const v = RESULTADOS[actual];
+    iframe.title = v.titulo;
+    iframe.src = srcDe(v);
+    titulo.textContent = `${v.titulo} · ${v.canal}`;
+    nEl.textContent = String(actual + 1);
+    totalEl.textContent = String(RESULTADOS.length);
+    tira.querySelectorAll('.visor-mini').forEach((b, i) => {
+      b.setAttribute('aria-selected', String(i === actual));
+      if (i === actual) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    });
+  }
+  function pintarTira() {
+    tira.innerHTML = RESULTADOS.map((v, i) => `<button type="button" class="visor-mini" role="tab" aria-selected="false" aria-label="${v.titulo}" data-ir="${i}"><img src="${v.thumb}" alt="" loading="lazy"></button>`).join('');
+    tira.querySelectorAll('[data-ir]').forEach(b => b.addEventListener('click', () => mostrar(Number(b.dataset.ir))));
+  }
+  const cerrarBtn = dlg.querySelector('[data-visor-cerrar]');
+  function abrir(k) {
+    if (!dlg.open) { dlg.showModal(); document.documentElement.style.overflow = 'hidden'; }
+    mostrar(k);
+    cerrarBtn.focus();
+  }
+  // YouTube roba el foco al cargar. Durante los 3 s siguientes a la carga lo devolvemos al visor;
+  // después, si la persona pulsa el reproductor, el foco es suyo (espacio para pausar, etc.).
+  let robo = 0;
+  iframe.addEventListener('load', () => { if (!dlg.open) return; robo = Date.now(); setTimeout(() => cerrarBtn.focus(), 50); });
+  window.addEventListener('blur', () => { if (dlg.open && Date.now() - robo < 3000) setTimeout(() => { if (document.activeElement === iframe) cerrarBtn.focus(); }, 0); });
+  // Si el foco se va al iframe, al mover el ratón fuera del reproductor lo recuperamos.
+  dlg.addEventListener('mousemove', e => { if (document.activeElement === iframe && !e.target.closest('.visor-pantalla')) cerrarBtn.focus(); });
+  function cerrar() { if (dlg.open) dlg.close(); }
+  dlg.addEventListener('close', () => { iframe.src = 'about:blank'; document.documentElement.style.overflow = ''; });
+  cerrarBtn.addEventListener('click', cerrar);
+  dlg.addEventListener('click', e => { if (e.target === dlg) cerrar(); }); // clic fuera del marco
+  ant.addEventListener('click', () => mostrar(actual - 1));
+  sig.addEventListener('click', () => mostrar(actual + 1));
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') mostrar(actual - 1); if (e.key === 'ArrowRight') mostrar(actual + 1); });
+  pintarTira();
+  return { abrir, cerrar };
+})();
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-abrir-video]'); if (!t || !visor) return;
+  e.preventDefault();
+  visor.abrir(Number(t.dataset.abrirVideo));
+});
+pintarResultados();
+document.addEventListener('maderia:idioma', pintarResultados);
