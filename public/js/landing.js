@@ -96,7 +96,7 @@ document.addEventListener('maderia:idioma', pintarVideosHero);
 
 /* Botón con ficha: el recorrido depende del ancho real del botón (cambia con el idioma). */
 function medirBotones() {
-  document.querySelectorAll('[data-boton-ficha]').forEach(b => b.style.setProperty('--ancho-boton', b.offsetWidth + 'px'));
+  document.querySelectorAll('[data-boton-ficha]').forEach(b => { b.style.setProperty('--ancho-boton', b.offsetWidth + 'px'); b.style.setProperty('--alto-boton', b.offsetHeight + 'px'); });
 }
 medirBotones();
 addEventListener('resize', medirBotones);

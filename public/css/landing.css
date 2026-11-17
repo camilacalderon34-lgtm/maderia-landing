@@ -56,10 +56,10 @@ button { font: inherit; color: inherit; }
 
 /* ===== 1. Hero ===== */
 .boton { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; font-weight: 700; text-decoration: none; line-height: 1; white-space: nowrap; transition: background-color .15s, color .15s, transform .15s, border-color .15s; }
-.boton-pri { position: relative; border-radius: 14px; background: #FFFFFF; color: #111; padding: 9px 22px 9px 56px; font-size: 16px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,.35); isolation: isolate; }
+.boton-pri { position: relative; border-radius: 14px; background: #FFFFFF; color: #111; min-height: 52px; padding: 8px 22px 8px 60px; font-size: 16px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,.35); isolation: isolate; }
 .boton-pri .texto { position: relative; z-index: 1; transition: transform .45s cubic-bezier(.65,0,.35,1); }
 .boton-pri .flecha { position: relative; z-index: 1; transition: transform .45s cubic-bezier(.65,0,.35,1), opacity .3s; }
-.boton-pri .ficha { position: absolute; top: 4px; left: 4px; width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+.boton-pri .ficha { position: absolute; top: 5px; left: 5px; height: calc(100% - 10px); aspect-ratio: 1; border-radius: 10px; display: grid; place-items: center;
   background: linear-gradient(135deg, #4F46E5, #818CF8); box-shadow: 0 4px 14px rgba(79,70,229,.45); z-index: 2;
   transition: transform .45s cubic-bezier(.65,0,.35,1); }
 .boton-pri .ficha svg { width: 22px; height: 11px; }
@@ -68,7 +68,7 @@ button { font: inherit; color: inherit; }
   background-image: radial-gradient(circle, rgba(99,102,241,.65) 1.1px, transparent 1.4px); background-size: 5px 5px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000); mask-image: linear-gradient(90deg, transparent, #000);
   opacity: 0; transition: opacity .25s; }
-.boton-pri:hover .ficha, .boton-pri:focus-visible .ficha { transform: translateX(calc(var(--ancho-boton, 260px) - 50px)); }
+.boton-pri:hover .ficha, .boton-pri:focus-visible .ficha { transform: translateX(calc(var(--ancho-boton, 260px) - var(--alto-boton, 52px))); }
 .boton-pri:hover .ficha::after, .boton-pri:focus-visible .ficha::after { --estela: 64px; opacity: 1; }
 .boton-pri:hover .texto, .boton-pri:focus-visible .texto { transform: translateX(-44px); }
 .boton-pri:hover .flecha, .boton-pri:focus-visible .flecha { transform: translateX(-44px); opacity: 0; }
@@ -109,7 +109,7 @@ button { font: inherit; color: inherit; }
 .hero-p { margin-top: 22px; max-width: 58ch; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: var(--hueso-bajo); }
 .hero-p strong { color: var(--hueso); font-weight: 700; }
 .hero-cta { margin-top: 30px; display: flex; flex-direction: column; align-items: center; }
-.hero-cta .boton-pri { font-size: clamp(15px, 1.4vw, 17px); padding-block: 9px; }
+.hero-cta .boton-pri { font-size: clamp(15px, 1.4vw, 17px); }
 .hero-nota { margin-top: 14px; font-size: 14px; color: var(--hueso-bajo); }
 
 /* Miniaturas de videos reales */
