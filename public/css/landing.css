@@ -137,7 +137,7 @@ button { font: inherit; color: inherit; }
 .tl-pista { display: grid; grid-template-columns: var(--etq) minmax(0, 1fr); align-items: center; gap: 10px; margin-bottom: 7px; }
 .tl-pista:last-of-type { margin-bottom: 0; }
 .tl-bloques { display: flex; gap: 3px; height: 18px; min-width: 0; }
-.tl-bloques i { display: block; height: 100%; flex: var(--w) 1 0; min-width: 0; border-radius: 4px; opacity: .55; transition: opacity .15s, filter .15s; }
+.tl-bloques i { display: block; height: 100%; flex: 1 1 var(--w); min-width: 0; border-radius: 4px; opacity: .55; transition: opacity .15s, filter .15s; }
 .tl-bloques i.pasada { opacity: .9; }
 .tl-bloques i.activa { opacity: 1; filter: brightness(1.15); box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset; }
 .tl-video i { background: var(--tl-video); }
