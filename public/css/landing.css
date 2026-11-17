@@ -172,7 +172,7 @@ button { font: inherit; color: inherit; }
 /* ===== 2. Demo: ventana de la app con el video ===== */
 .demo { padding-top: clamp(24px, 4vw, 48px); }
 .demo-cab { text-align: center; max-width: 720px; margin: 0 auto clamp(28px, 4vw, 44px); }
-.demo-cab .sobre { color: var(--acento); margin-bottom: 12px; }
+.demo-cab .sobre { color: var(--acento); margin-bottom: 14px; font-size: clamp(20px, 1.9vw, 26px); font-weight: 800; letter-spacing: -0.02em; text-transform: none; }
 .demo-cab h2 { font-size: clamp(30px, 4.6vw, 52px); color: var(--hueso); }
 .demo-sub { margin-top: 14px; font-size: clamp(16px, 1.4vw, 18px); color: var(--hueso-bajo); }
 
