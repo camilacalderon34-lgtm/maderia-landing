@@ -12,6 +12,9 @@ export const T = {
     'hero.n1': 'Sin tarjeta', 'hero.n2': 'primer video gratis hasta', 'hero.n3': 'min', 'hero.n4': 'videos de 15 a 20 min',
     'tl.titulo': 'Línea de tiempo', 'tl.video': 'Video', 'tl.voz': 'Voz', 'tl.subs': 'Subtítulos', 'tl.musica': 'Música', 'tl.pie': 'escenas · un clip por frase',
     'vid.escenas': 'escenas', 'vid.ver': 'Ver en YouTube',
+    'demo.sobre': 'Cómo funciona', 'demo.t': 'Mira la app hacer un video completo.',
+    'demo.sub': 'Del título al video terminado, tal como se ve por dentro.',
+    'demo.ver': 'Ver la demo', 'demo.play': 'Reproducir el video',
     'meta.desc': 'Elige el canal, escribe el título. Maderia hace el guion, la voz, los clips, la revisión y el render. Tu primer video, gratis.',
   },
   en: {
@@ -25,6 +28,9 @@ export const T = {
     'hero.n1': 'No card', 'hero.n2': 'first video free up to', 'hero.n3': 'min', 'hero.n4': '15 to 20 minute videos',
     'tl.titulo': 'Timeline', 'tl.video': 'Video', 'tl.voz': 'Voice', 'tl.subs': 'Captions', 'tl.musica': 'Music', 'tl.pie': 'scenes · one clip per sentence',
     'vid.escenas': 'scenes', 'vid.ver': 'Watch on YouTube',
+    'demo.sobre': 'How it works', 'demo.t': 'Watch the app make a full video.',
+    'demo.sub': 'From the title to the finished video, exactly as it looks inside.',
+    'demo.ver': 'Watch the demo', 'demo.play': 'Play the video',
     'meta.desc': 'Pick the channel, type the title. Maderia writes, narrates, finds the clips, reviews and renders. Your first video is free.',
   },
 };

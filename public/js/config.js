@@ -15,6 +15,12 @@ export const CONFIG = Object.freeze({
   URL_LOGIN: 'https://app.usemaderia.com/',
   // Moneda y formato.
   MONEDA: 'USD',
+  // Video de la sección "Cómo funciona". TODO: reemplazar por el video definitivo.
+  // Puede ser una ruta local en /assets/ o una URL absoluta (R2, Cloudflare Stream, etc.).
+  VIDEO_DEMO: {
+    src: '/assets/demo.mp4',          // TODO video definitivo
+    poster: '/assets/app/final.jpg',  // TODO fotograma de portada del video definitivo
+  },
 });
 
 /** Formatea dólares según el idioma activo: 0.79 -> "$0,79" (es) / "$0.79" (en). */

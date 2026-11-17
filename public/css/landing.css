@@ -52,6 +52,7 @@ button { font: inherit; color: inherit; }
 
 .contenedor { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; }
 .seccion { padding-block: clamp(56px, 9vw, 112px); }
+[id] { scroll-margin-top: 80px; } /* los anclas no quedan bajo la barra fija */
 .visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ===== 1. Hero ===== */
@@ -168,14 +169,46 @@ button { font: inherit; color: inherit; }
 .tl-cursor { position: absolute; top: -6px; bottom: -6px; left: calc(var(--etq) + 10px + (100% - var(--etq) - 10px) * var(--p, .31)); width: 2px; background: var(--morado-claro); box-shadow: 0 0 12px rgba(129,140,248,.8); }
 .tl-cursor::before { content: ""; position: absolute; top: -4px; left: 50%; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--morado-claro); }
 @media (prefers-reduced-motion: reduce) { .tl-bloques i { transition: none; } }
-/* ===== 2. Prueba real ===== */
-/* ===== 3. Perfiles por canal ===== */
-/* ===== 4. Videos reales ===== */
-/* ===== 5. Cómo funciona ===== */
-/* ===== 6. Editor de escenas ===== */
-/* ===== 7. Fuentes y licencias ===== */
-/* ===== 8. La diferencia ===== */
-/* ===== 9. Calculadora ROI ===== */
-/* ===== 10. Precios y comparativa ===== */
-/* ===== 11. FAQ ===== */
-/* ===== 12. Footer ===== */
+/* ===== 2. Demo: ventana de la app con el video ===== */
+.demo { padding-top: clamp(24px, 4vw, 48px); }
+.demo-cab { text-align: center; max-width: 720px; margin: 0 auto clamp(28px, 4vw, 44px); }
+.demo-cab .sobre { color: var(--acento); margin-bottom: 12px; }
+.demo-cab h2 { font-size: clamp(30px, 4.6vw, 52px); color: var(--hueso); }
+.demo-sub { margin-top: 14px; font-size: clamp(16px, 1.4vw, 18px); color: var(--hueso-bajo); }
+
+.ventana { background: #141414; border: 1px solid #2E2E2E; border-radius: clamp(18px, 2.4vw, 28px); overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 0 40px 90px rgba(0,0,0,.55); }
+.ventana-barra { display: flex; align-items: center; gap: 14px; height: 60px; padding: 0 22px; color: var(--hueso-bajo); }
+.ventana-flecha { display: inline-flex; color: var(--hueso-bajo); }
+.ventana-sep { width: 1px; height: 22px; background: #333; }
+.ventana-marca { display: inline-flex; align-items: center; gap: 9px; color: var(--hueso); font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
+.ventana-dur { margin-left: auto; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--hueso-bajo); font-variant-numeric: tabular-nums; border: 1px solid #333; border-radius: 999px; padding: 5px 10px; }
+.ventana-cuerpo { position: relative; aspect-ratio: 16 / 9; background: #0E0E0E; }
+.demo-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.ventana.reproduciendo .demo-video { object-fit: contain; }
+.demo-play { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.45)); cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #fff; transition: background .2s; }
+.demo-play:hover { background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35)); }
+.demo-play-ficha { width: 76px; height: 76px; border-radius: 22px; display: grid; place-items: center; color: #fff;
+  background: linear-gradient(135deg, #4F46E5, #818CF8); box-shadow: 0 16px 40px rgba(79,70,229,.45), 0 0 0 8px rgba(129,140,248,.14); transition: transform .2s; }
+.demo-play-ficha svg { margin-left: 3px; }
+.demo-play:hover .demo-play-ficha { transform: scale(1.06); }
+.demo-play-txt { font-weight: 700; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+.ventana.reproduciendo .demo-play { display: none; }
+@media (max-width: 600px) {
+  .ventana-barra { height: 50px; padding: 0 14px; gap: 10px; }
+  .ventana-marca { font-size: 15px; }
+  .demo-play-ficha { width: 60px; height: 60px; border-radius: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .demo-play-ficha, .demo-play { transition: none; } }
+/* ===== 3. Prueba real ===== */
+/* ===== 4. Perfiles por canal ===== */
+/* ===== 5. Videos reales ===== */
+/* ===== 6. Cómo funciona ===== */
+/* ===== 7. Editor de escenas ===== */
+/* ===== 8. Fuentes y licencias ===== */
+/* ===== 9. La diferencia ===== */
+/* ===== 10. Calculadora ROI ===== */
+/* ===== 11. Precios y comparativa ===== */
+/* ===== 12. FAQ ===== */
+/* ===== 13. Footer ===== */

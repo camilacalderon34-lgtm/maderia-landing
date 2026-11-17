@@ -102,3 +102,31 @@ medirBotones();
 addEventListener('resize', medirBotones);
 document.addEventListener('maderia:idioma', () => requestAnimationFrame(medirBotones));
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirBotones);
+
+/* ===== 2. Demo: video desde CONFIG.VIDEO_DEMO, play al pulsar ===== */
+(function montarDemo() {
+  const video = document.querySelector('[data-demo-video]'); if (!video) return;
+  const ventana = video.closest('.ventana');
+  const btn = document.querySelector('[data-demo-play]');
+  const dur = document.querySelector('[data-demo-dur]');
+  // Fuente y portada desde la configuración (un solo lugar para cambiarlas).
+  if (CONFIG.VIDEO_DEMO) {
+    if (CONFIG.VIDEO_DEMO.poster) video.poster = CONFIG.VIDEO_DEMO.poster;
+    const src = video.querySelector('source');
+    if (CONFIG.VIDEO_DEMO.src && src && src.getAttribute('src') !== CONFIG.VIDEO_DEMO.src) { src.src = CONFIG.VIDEO_DEMO.src; video.load(); }
+  }
+  const pintarDur = () => {
+    if (!dur || !isFinite(video.duration) || !video.duration) return;
+    const s = Math.round(video.duration);
+    dur.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    dur.hidden = false;
+  };
+  video.addEventListener('loadedmetadata', pintarDur);
+  if (video.readyState >= 1) pintarDur(); // por si los metadatos llegaron antes que este script
+  btn.addEventListener('click', () => {
+    ventana.classList.add('reproduciendo');
+    video.controls = true;
+    video.play().catch(() => {});
+  });
+  video.addEventListener('ended', () => { ventana.classList.remove('reproduciendo'); video.controls = false; });
+})();
