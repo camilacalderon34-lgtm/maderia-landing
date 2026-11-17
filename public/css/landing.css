@@ -1,0 +1,57 @@
+/* Maderia landing — hoja base. Las secciones se añaden una a una debajo de los tokens. */
+:root {
+  --nogal:      #1A1513;
+  --nogal-alto: #241D19;
+  --hueso:      #F0E9DF;
+  --hueso-bajo: #A19484;
+  --laton:      #D4A24C;
+  --borde:      #342A24;
+
+  --f-display: "Fraunces", Georgia, serif;
+  --f-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ancho: 1160px;
+  --gutter: 16px;
+  --radio: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+body {
+  margin: 0;
+  background: var(--nogal);
+  color: var(--hueso);
+  font-family: var(--f-ui);
+  font-size: 16px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: var(--f-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.08; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+img, video { max-width: 100%; height: auto; display: block; }
+button { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--laton); outline-offset: 3px; border-radius: 4px; }
+
+.contenedor { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; }
+.seccion { padding-block: clamp(56px, 9vw, 112px); }
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===== 1. Hero (pendiente: pegar bloque aprobado) ===== */
+/* ===== 2. Prueba real ===== */
+/* ===== 3. Perfiles por canal ===== */
+/* ===== 4. Videos reales ===== */
+/* ===== 5. Cómo funciona ===== */
+/* ===== 6. Editor de escenas ===== */
+/* ===== 7. Fuentes y licencias ===== */
+/* ===== 8. La diferencia ===== */
+/* ===== 9. Calculadora ROI ===== */
+/* ===== 10. Precios y comparativa ===== */
+/* ===== 11. FAQ ===== */
+/* ===== 12. Footer ===== */

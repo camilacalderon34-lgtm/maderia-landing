@@ -1,0 +1,7 @@
+# www -> apex
+https://www.usemaderia.com/* https://usemaderia.com/:splat 301
+# Rutas de la landing vieja servida por FastAPI, por si quedaron enlazadas.
+/static/landing/demo.mp4 /assets/demo.mp4 301
+/static/landing/v_:id.jpg /assets/videos/v_:id.jpg 301
+/static/landing/app/p_:id.mp4 /assets/videos/p_:id.mp4 301
+/static/img/marca/* /assets/marca/:splat 301

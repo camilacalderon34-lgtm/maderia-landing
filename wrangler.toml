@@ -1,0 +1,10 @@
+# Maderia landing — sitio estático en Cloudflare Workers (static assets).
+# Despliegue: conectar este repo en Cloudflare > Workers & Pages > Create > Import a repository.
+# Sin comando de build. Carpeta de salida: public/
+name = "maderia-landing"
+compatibility_date = "2026-11-01"
+
+[assets]
+directory = "./public"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
