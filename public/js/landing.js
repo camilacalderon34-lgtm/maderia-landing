@@ -93,3 +93,12 @@ function montarLineaDeTiempo() {
 montarLineaDeTiempo();
 pintarVideosHero();
 document.addEventListener('maderia:idioma', pintarVideosHero);
+
+/* Botón con ficha: el recorrido depende del ancho real del botón (cambia con el idioma). */
+function medirBotones() {
+  document.querySelectorAll('[data-boton-ficha]').forEach(b => b.style.setProperty('--ancho-boton', b.offsetWidth + 'px'));
+}
+medirBotones();
+addEventListener('resize', medirBotones);
+document.addEventListener('maderia:idioma', () => requestAnimationFrame(medirBotones));
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirBotones);
