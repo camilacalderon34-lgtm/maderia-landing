@@ -139,20 +139,11 @@ function pintarResultados() {
   const cont = document.querySelector('[data-resultados]'); if (!cont) return;
   const d = T[lang] || T.es;
   cont.innerHTML = RESULTADOS.map((v, k) => `
-    <button type="button" class="tarjeta-video" data-abrir-video="${k}" aria-label="${d['res.ver']}: ${v.titulo}">
+    <button type="button" class="tarjeta-video" data-abrir-video="${k}" aria-label="${d['res.ver']}: ${v.titulo} · ${v.canal}" title="${v.titulo}">
       <div class="tarjeta-media">
         <img src="${v.thumb}" alt="" loading="lazy" decoding="async">
         <span class="tarjeta-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></span>
         <span class="tarjeta-dur">${v.duracion}</span>
-      </div>
-      <div class="tarjeta-cuerpo">
-        <h3>${v.titulo}</h3>
-        <div class="tarjeta-meta">
-          <span class="canal">${v.canal}</span>
-          <span>${vistasFmt(v.vistas)} ${d['res.vistas']}</span>
-          <span class="chip">${(CATEGORIAS[v.categoria] || {})[lang] || v.categoria}</span>
-          <span class="chip">${v.idioma}</span>
-        </div>
       </div>
     </button>`).join('');
 }
@@ -175,7 +166,7 @@ const visor = (() => {
     const v = RESULTADOS[actual];
     iframe.title = v.titulo;
     iframe.src = srcDe(v);
-    titulo.textContent = `${v.titulo} · ${v.canal}`;
+    titulo.innerHTML = `<b>${v.titulo}</b><span>${v.canal} · ${vistasFmt(v.vistas)} ${(T[lang] || T.es)['res.vistas']}</span>`;
     nEl.textContent = String(actual + 1);
     totalEl.textContent = String(RESULTADOS.length);
     tira.querySelectorAll('.visor-mini').forEach((b, i) => {
