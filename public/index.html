@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maderia — Videos largos para tus canales de YouTube, en piloto automático</title>
   <meta name="description" content="Elige el canal, escribe el título. Maderia hace el guion, la voz, los clips, la revisión y el render. Tu primer video, gratis.">
-  <meta name="theme-color" content="#1A1513">
+  <meta name="theme-color" content="#181818">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/marca/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/marca/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/landing.css">
 </head>
 <body>
@@ -38,18 +38,20 @@
   </header>
 
   <section class="hero">
+    <!-- Videos reales a los lados, en perspectiva. Se rellenan desde js/videos.js. -->
+    <div class="lado lado-izq" data-lado="izq" aria-hidden="true"></div>
+    <div class="lado lado-der" data-lado="der" aria-hidden="true"></div>
+
     <div class="contenedor hero-dentro">
       <div class="hero-texto">
         <div class="pastillas">
-          <span class="pastilla"><i aria-hidden="true"></i><span data-i18n="hero.p1">Para quien corre varios canales</span></span>
           <span class="pastilla"><span data-precio>$0,79</span>&nbsp;<span data-i18n="hero.p2">el minuto de video</span></span>
         </div>
-        <p class="sobre" data-i18n="hero.sobre">Videos largos de YouTube sin mostrar la cara</p>
         <h1>
           <span data-i18n="hero.t1">Escribe el título.</span><br>
           <span class="acento" data-i18n="hero.t2">Maderia hace el video.</span>
         </h1>
-        <p class="hero-p" data-i18n="hero.p">Eliges el canal, escribes el título y Maderia escribe el guion, pone la voz, busca un clip para cada frase, lo revisa y lo renderiza. <strong>Un video de 15 a 20 minutos listo para subir.</strong> Cada canal con su propia voz, su estilo y sus reglas.</p>
+        <p class="hero-p" data-i18n="hero.p">Eliges el canal, escribes el título y Maderia escribe el guion, pone la voz, busca un clip para cada frase, lo revisa y lo renderiza. <strong>Un video de 15 a 20 minutos listo para subir.</strong></p>
         <div class="hero-cta">
           <a class="boton boton-pri" href="https://app.usemaderia.com/" data-url-registro>
             <span data-i18n="hero.cta">Haz tu primer video gratis</span>
@@ -61,24 +63,23 @@
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="false">
-        <!-- Tres videos reales. Se rellenan desde js/videos.js (los tres primeros del array). -->
-        <div class="baraja" data-hero-baraja></div>
+      <!-- En pantallas estrechas los 8 videos pasan a una tira horizontal. -->
+      <div class="tira" data-tira></div>
 
-        <!-- Línea de tiempo: una frase, un plano. -->
-        <figure class="tl" aria-label="Línea de tiempo de un video de Maderia">
-          <figcaption class="tl-cab">
-            <span><span data-i18n="tl.titulo">Línea de tiempo</span> · <b data-tl-canal>Construcción</b></span>
-            <span class="tl-tiempo">00:00 / <span data-tl-dur>18:44</span></span>
-          </figcaption>
+      <!-- Línea de tiempo animada: una frase, un plano. -->
+      <figure class="tl" aria-label="Línea de tiempo de un video de Maderia">
+        <figcaption class="tl-cab">
+          <span><span data-i18n="tl.titulo">Línea de tiempo</span> · <b data-tl-canal>Construcción</b></span>
+          <span class="tl-tiempo"><span data-tl-ahora>00:00</span> / <span data-tl-dur>18:44</span></span>
+        </figcaption>
+        <div class="tl-pistas">
           <div class="tl-pista"><span data-i18n="tl.video">Video</span><div class="tl-bloques tl-video"></div></div>
           <div class="tl-pista"><span data-i18n="tl.voz">Voz</span><div class="tl-bloques tl-voz"></div></div>
           <div class="tl-pista"><span data-i18n="tl.subs">Subtítulos</span><div class="tl-bloques tl-subs"></div></div>
           <div class="tl-pista"><span data-i18n="tl.musica">Música</span><div class="tl-bloques tl-musica"><i style="--w:100%"></i></div></div>
           <div class="tl-cursor" aria-hidden="true"></div>
-          <p class="tl-pie"><b data-tl-escenas>288</b> <span data-i18n="tl.pie">escenas · un clip por frase</span></p>
-        </figure>
-      </div>
+        </div>
+      </figure>
     </div>
   </section>
   <!-- ===== /1. HERO ===== -->
